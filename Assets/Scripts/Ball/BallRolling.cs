@@ -38,7 +38,7 @@ public class BallRolling : MonoBehaviour
     {
         if (other.CompareTag("Lava"))
         {
-            isOnLava = true;
+            isOnFinish = true;
         }
         if (other.CompareTag("Finish"))
         {

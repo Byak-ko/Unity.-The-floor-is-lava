@@ -9,6 +9,7 @@ public class CollisionSound : MonoBehaviour
     [SerializeField]
     private AudioSource _backgroundMusic;
     private bool IsSoundPlayed = false;
+    public GameObject uiObject;
 
 
     private void Start()
@@ -26,6 +27,7 @@ public class CollisionSound : MonoBehaviour
     {
         if (sound != null && !IsSoundPlayed)
         {
+            uiObject.SetActive(true);
             _audioSource.PlayOneShot(sound);
             _backgroundMusic.enabled = false;
             IsSoundPlayed = true;

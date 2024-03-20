@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Lava
   - Wall
+  - LoseUI
+  - WinUI
   layers:
   - Default
   - TransparentFX
