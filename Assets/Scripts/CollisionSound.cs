@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CollisionSound : MonoBehaviour
 {
+    public ParticleSystem Particles;
+    public GameObject Player;
+    public GameObject GameUI;
     public AudioClip Sound;
     private AudioSource _audioSource;
     [SerializeField]
@@ -14,6 +17,7 @@ public class CollisionSound : MonoBehaviour
 
     private void Start()
     {
+        Particles.Stop();
         IsSoundPlayed = false;
         _audioSource = GetComponent<AudioSource>();
     }
@@ -27,6 +31,18 @@ public class CollisionSound : MonoBehaviour
     {
         if (sound != null && !IsSoundPlayed)
         {
+            if (Particles != null)
+            {
+                Instantiate(Particles, Player.transform.position, Quaternion.identity);
+                _audioSource.PlayOneShot(_audioSource.clip);
+            }
+
+            Player.SetActive(false);
+            GameUI.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             uiObject.SetActive(true);
             _audioSource.PlayOneShot(sound);
             _backgroundMusic.enabled = false;
